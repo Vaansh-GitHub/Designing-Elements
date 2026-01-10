@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            /* background-color: black; */
+        }
+        body * {
+            /* border:1px solid black; */
+        }
+        .hero{
+            position:relative;
+        }
+        .overlay{
+            z-index:50;
+            background-color: transparent;
+            width:100%;
+            height: 100%;
+            position:absolute;
+            top:0;
+            box-shadow: 10px 0 15px inset,-10px 0 15px inset;
+            pointer-events: none;
+        }
+        .caraousal {
+            padding: 10px;
+            overflow: auto;
+            display: flex;
+            pointer-events: none; /*Prevents Caraousal to scroll */
+        }
+
+        .caraousal::-webkit-scrollbar {
+            display: none;
+        }
+
+        .group {
+            display: flex;
+            gap: 3rem;
+            width: fit-content;
+            animation: slideOut 20s linear infinite;
+            padding-right: 3rem;
+        }
+
+        .elements {
+            width: 20%;
+            min-width: 200px;
+            min-height: 200px;
+            background-color: aqua;
+            font-size: 20px;
+            border-radius: 10px;
+            pointer-events: auto;
+        }
+
+        .elements:hover {
+            transform: scale(1.2);
+        }
+
+        .caraousal:has(.elements:hover) .group {
+            animation-play-state: paused;
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hero">
+        <div class="caraousal">
+            <div class="group">
+                <div class="elements">1</div>
+                <div class="elements">2</div>
+                <div class="elements">3</div>
+                <div class="elements">4</div>
+                <div class="elements">5</div>
+                <div class="elements">6</div>
+            </div>
+
+            <div aria-hidden class="group">
+                <div class="elements">1</div>
+                <div class="elements">2</div>
+                <div class="elements">3</div>
+                <div class="elements">4</div>
+                <div class="elements">5</div>
+                <div class="elements">6</div>
+            </div>
+        </div>
+
+        <div class="overlay"></div>
+    </section>
+</body>
+
+</html>
